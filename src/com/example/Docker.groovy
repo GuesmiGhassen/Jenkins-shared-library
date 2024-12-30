@@ -8,7 +8,11 @@ class Docker implements Serializable {
     Docker(script) {
         this.script = script
     }
-
+    
+    def buildJar() {
+        sh "mvn clean package -DskipTests"
+    }
+    
     def buildDockerImage (String imageName) {
         script.echo "Building the docker image..."
         script.sh "docker build -t ghassen07/my-repo:$imageName ."
